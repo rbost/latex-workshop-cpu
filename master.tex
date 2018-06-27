@@ -1,0 +1,61 @@
+\RequirePackage{etex} % Removes a warning
+\RequirePackage{etoolbox}
+
+%% Sometimes, we need the good old \if ...
+\makeatletter
+\newcommand{\iftogglehard}[1]{%
+    \ifcsdef{etb@tgl@#1}
+        {\csname etb@tgl@#1\endcsname\iftrue\iffalse}
+        {\etb@noglobal\etb@err@notoggle{#1}\iffalse}%
+}
+\makeatother
+
+\newtoggle{draft}         % true = draft version => quicker compilation but some features disabled (microtype, chapterthumb because of bug with synctex, ...)
+\newtoggle{showoverflow}  % true = show overflows
+\newtoggle{allowtodo}     % false = remove todo command
+\newtoggle{showtodo}      % true = show todo; false = hide todo
+\newtoggle{inlinetodo}    % true = use inlined todo instead of the package
+\newtoggle{printversion}  % true = print version, without colored linked; false = default version
+\newtoggle{acm}			  % true = use an ACM document class (deactivate some stuff)
+\newtoggle{lncs}			  % true = use an LNCS document class (deactivate some stuff)
+
+% \toggletrue{printversion}
+% \toggletrue{draft}
+\toggletrue{showoverflow}
+
+\toggletrue{allowtodo}
+\toggletrue{showtodo}
+\toggletrue{inlinetodo}
+
+% \toggletrue{acm}
+% \toggletrue{lncs}
+
+
+\newtoggle{twocols}  % true = use two columns
+% \toggletrue{twocols}
+
+
+\newtoggle{anon}  % true = anonymous
+\toggletrue{anon}
+
+\documentclass[a4]{article}
+
+\input{aux/packages}
+\input{aux/macros}
+\input{aux/sse_macros}
+
+
+\begin{document}
+
+This is a test document \cite{CCS:Bost16}.
+
+
+
+
+
+
+
+\bibliography{cryptobib/abbrev3,biblio_aux,cryptobib/crypto}
+
+
+\end{document}
